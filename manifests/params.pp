@@ -23,10 +23,12 @@ class postfix::params {
     'RedHat': {
       $tls_bundle = '/etc/pki/tls/certs/ca-bundle.crt'
       $tls_package = 'openssl'
+      $sasl_package = 'cyrus-sasl-plain'
     }
     'Debian': {
       $tls_bundle = '/etc/ssl/certs/ca-certificates.crt'
       $tls_package = 'ca-certificates'
+      $sasl_package = 'libsasl2-modules'
     }
     default: {
       $tls_bundle = false

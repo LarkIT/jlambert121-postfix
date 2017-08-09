@@ -55,6 +55,10 @@
 #   String.  Package containing TLS certificate bundle..
 #   Default: Sensible defaults for RedHat and Debian systems, otherwise false.
 #
+# [*sasl_package*]
+#   String.  Package containing SASL mechanism.
+#   Default: Sensible defaults for RedHat and Debian systems, otherwise false.
+#
 #
 # === Examples
 #
@@ -76,6 +80,7 @@ class postfix (
   $tls                          = $postfix::params::tls,
   $tls_bundle                   = $postfix::params::tls_bundle,
   $tls_package                  = $postfix::params::tls_package,
+  $sasl_package                 = $postfix::params::sasl_package,
   $master_config_services       = $postfix::params::master_config_services,
   $main_options_hash            = $postfix::params::main_options_hash,
   $smtpd_client_restrictions    = $postfix::params::smtpd_client_restrictions,

@@ -4,8 +4,9 @@
 #
 #
 class postfix::install (
-  $tls         = $::postfix::tls,
-  $tls_package = $::postfix::tls_package,
+  $tls          = $::postfix::tls,
+  $tls_package  = $::postfix::tls_package,
+  $sasl_package = $::postfix::sasl_package,
 ) {
 
   package { 'sendmail':
@@ -14,13 +15,19 @@ class postfix::install (
   }
 
   package { 'postfix':
-    ensure => latest,
+    ensure => present,
     notify => Class['postfix::service'],
   }
 
   if ( $postfix::install::tls and $postfix::install::tls_package ) {
     package { $postfix::install::tls_package:
-      ensure => latest,
+      ensure => present,
+    }
+  }
+
+  if ( $postfix::relay_username and $postfix::relay_password and $sasl_package ) {
+    package { $sasl_package:
+      ensure => present,
     }
   }
 }
